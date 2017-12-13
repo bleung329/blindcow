@@ -22,6 +22,8 @@ var distance = function (x0, y0, x1, y1) {
 var maxDist = distance(0,0,boxWidth,boxHeight);	
 console.log("maxDist: " + maxDist)
 
+
+//This function will check the distance of the pointer to the invisible point
 var findIt = function(e)
 {
 	console.log("x: "+e.clientX);
@@ -32,13 +34,15 @@ var findIt = function(e)
 	box.style.backgroundColor = rgb(actDist,actDist,actDist);
 };
 
+//This function will check whether the pointer is in range of the target
 var clicky = function(e)
 {
-	if (distance(e.clientX,e.clientY,targetX,targetY)<50)
+	if (distance(e.clientX,e.clientY,targetX,targetY)<60)
 	{
 		var newhead = document.createElement("h1");
-		newhead.innerHTML = "YOU FOUND THE INVISIBLE COW!!!";
+		newhead.innerHTML = "<b>YOU FOUND THE INVISIBLE COW!!!<b>";
 		box.parentNode.replaceChild(newhead,box);
+
 	}
 }
 
