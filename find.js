@@ -7,7 +7,6 @@ var box = document.getElementById("box");
 var boxHeight = box.offsetHeight;
 var boxWidth = box.offsetWidth;
 
-//hardcode target as center
 //randomize later
 var targetX = Math.abs(Math.trunc(Math.random(6)*boxWidth));
 var targetY = Math.abs(Math.trunc(Math.random(7)*boxHeight));
@@ -20,19 +19,28 @@ var distance = function (x0, y0, x1, y1) {
 	return Math.sqrt(Math.pow(x1-x0,2)+Math.pow(y1-y0,2));
 };
 
-var maxDist = distance(0,0,targetX,targetY);	
+var maxDist = distance(0,0,boxWidth,boxHeight);	
 console.log("maxDist: " + maxDist)
 
 var findIt = function(e)
 {
 	console.log("x: "+e.clientX);
 	console.log("y: "+e.clientY);
-	//console.log("distance: "+distance(e.clientX,e.clientY,targetX,targetY));
 	var dust = distance(e.clientX,e.clientY,targetX,targetY);
 	var actDist = Math.trunc(255*(maxDist-dust)/maxDist);
 	console.log(rgb(actDist,actDist,actDist));
 	box.style.backgroundColor = rgb(actDist,actDist,actDist);
 };
+
+var clicky = function(e)
+{
+	if (distance(e.clientX,e.clientY,targetX,targetY)<50)
+	{
+		var newhead = document.createElement("h1");
+		newhead.innerHTML = "YOU FOUND THE INVISIBLE COW!!!";
+		box.parentNode.replaceChild(newhead,box);
+	}
+}
 
 //Converts the actDist to a hexcode for color
 var rgb = function(r,g,b)
@@ -51,4 +59,5 @@ your OTHER FXNS
 */
 
 box.addEventListener("mousemove", findIt);
+box.addEventListener("click", clicky);
 
