@@ -40,8 +40,9 @@ var clicky = function(e)
 	if (distance(e.clientX,e.clientY,targetX,targetY)<60)
 	{
 		var newhead = document.createElement("h1");
-		newhead.innerHTML = "<b>YOU FOUND THE INVISIBLE COW!!!<b>";
+		newhead.innerHTML = "<b>YOU FOUND THE INVISIBLE COW!!! GOOD JOB!!!!<b>";
 		box.parentNode.replaceChild(newhead,box);
+
 
 	}
 }
